@@ -1,0 +1,19 @@
+Package: isofracDH
+Title: Tidyverse Tools for Hydrogen Isotope Fractionation Calculations
+Version: 0.0.0.9000
+Authors@R: 
+    person("Carolynn", "Harris", email = "carolynn.m.harris@gmail.com", role = c("aut", "cre"))
+Description: Provides tidyverse-native functions for calculating hydrogen (D/H)
+    isotope fractionation and mixing relationships described in Sessions (2005),
+    with teaching-oriented examples and visualizations.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    dplyr,
+    rlang
+Suggests:
+    testthat (>= 3.0.0),
+    tibble
+Config/testthat/edition: 3

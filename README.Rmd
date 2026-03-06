@@ -1,0 +1,98 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# isofracDH
+
+<!-- badges: start -->
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![R](https://img.shields.io/badge/language-R-blue)]()
+<!-- badges: end -->
+
+### Tidyverse tools for hydrogen isotope fractionation calculations
+
+isofracDH provides tidyverse-native functions for calculating hydrogen isotope fractionation and mixing relationships described in:
+
+> Sessions, A. L. (2005). Calculation of hydrogen isotopic fractionations in biogeochemical systems. Geochimica et Cosmochimica Acta.
+
+This package is designed as a teaching and analysis tool for students and researchers learning about hydrogen isotope systematics, with a focus on Sections 3.1, 3.2, 3.3, and 3.5 of Sessions and Hays (2005).
+
+## Features
+isofracDH helps you:
+
+- calculate substrate → product fractionation relationships
+- model two-component mixing where one component fractionates
+- model two-component mixing where both components fractionate
+- fit the p-parameter regression formulation described in the paper
+- visualize solution constraints and non-unique solution spaces
+- reproduce the *Methylococcus capsulatus* analysis from Sessions (2002) 
+
+The package includes:
+
+- tidyverse-friendly calculation functions
+- plots to help visualize hydrogen isotope systematics
+- simulated teaching datasets (e.g., kerogen exchangeable H examples)
+- a packaged dataset derived from Table 3 (*M. capsulatus* lipid p-parameters)
+
+
+## Installation
+
+You can install the development version of isofracDH from [GitHub](https://github.com/) with:
+```{r, eval = F}
+# install.packages("pak")
+pak::pak("carolynnharris/isofracDH")
+```
+
+
+## Example
+
+This is a basic example showing the intended tidyverse-native workflow (functions add columns to a tibble).
+
+```{r, eval = F}
+library(isofracDH)
+library(dplyr)
+
+df <- tibble::tibble(
+  delta_source = seq(-200, 50, by = 10),
+  alpha = 0.92
+)
+
+df %>%
+  add_frac_single(delta_source = delta_source, alpha = alpha)
+```
+
+
+## Important notes on units 
+
+All delta (δ) values should be supplied in per mille (‰) units.
+
+Internally, isofracDH converts δ values to fractional form (δ / 1000) before applying subsequent equations. This matches the convention used in Sessions and Hays 2005 and helps avoid common unit mistakes.
+
+## Data
+The package includes a dataset derived from Table 3 in Sessions et al. (2002) as reproduced in Sessions and Hays (2005), used for the *Methylococcus capsulatus* lipid example in Section 3.5.
+
+## Status
+
+This package is under active development. Planned milestones:
+
+- Implement calculations and plots corresponding to Sections 3.1, 3.2, 3.3, and 3.5
+- Add teaching vignettes (single-component fractionation; exchangeable H in kerogen; non-unique solutions; *M. capsulatus* example)
+- Add test coverage with testthat
+
+## License
+MIT License © Carolynn Harris
+
+## Citation
+If you use this package, please cite:
+
+> Harris, C. (2026). isofracDH: Tidyverse tools for hydrogen isotope fractionation calculations. GitHub repository.
